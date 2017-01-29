@@ -29,6 +29,10 @@ class DeliveryGuy:
     def satisfyOrder(self, order: Order, drone: Drone, warehouses: List[Warehouse]):
         drone.isBusy = True
         for product in order.products:
+            if product[1] == 0:
+                continue
+            if order.satisfied:
+                break
             choosedWarehouse = self.searchWarehousesByProduct(warehouses, product)
             if choosedWarehouse is None:
                 return False
