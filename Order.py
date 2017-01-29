@@ -17,7 +17,9 @@ class Order:
             remainingItemToDelivery = orderProduct[1] - product[1]
             assert(remainingItemToDelivery >= 0)
             self.products.remove(orderProduct)
-            self.products.append((orderProduct[0], remainingItemToDelivery))
+            if remainingItemToDelivery > 0:
+                self.products.append((orderProduct[0], remainingItemToDelivery))
+        self.products.sort(key=lambda element: element[0].type)
         self.satisfied = self.isSatisfied()
 
     def findProduct(self, idProduct) -> Tuple[Product, int]:
