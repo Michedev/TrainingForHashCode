@@ -9,6 +9,7 @@ class Drone:
         self.position = position
         self.currentWeight = 0
         self.loadedItems = []
+        self.isBusy = False
 
     def loadItem(self, productWithQty : Tuple[Product, int]):
         self.loadedItems.append(productWithQty)
