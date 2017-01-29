@@ -24,7 +24,7 @@ class Drone:
         assert(self.currentWeight <= self.maxWeight)
 
     def unloadItem(self, productWithQty : Tuple[Product, int]):
-        itemToUnload = list(filter(lambda el : el[0].type == productWithQty[0].type, self.loadedItems))
+        itemToUnload = list(filter(lambda el: el[0].type == productWithQty[0].type, self.loadedItems))
         self.loadedItems.remove(itemToUnload)
         productsWeight = productWithQty[0].weight * productWithQty[1]
         self.currentWeight -= productsWeight

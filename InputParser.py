@@ -59,7 +59,7 @@ class InputParser:
             for cP in countedProducts:
                 products.append((self.products[cP], countedProducts[cP]))
                 j += 1
-            self.orders = Order(position, products)
+            self.orders.append(Order(position, products))
 
 
     def readProducts(self, weightsLine):
