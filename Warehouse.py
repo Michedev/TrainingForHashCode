@@ -1,4 +1,4 @@
-from _ast import List
+from typing import List
 
 from Point import Point
 from Product import Product
