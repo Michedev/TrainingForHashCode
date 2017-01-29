@@ -15,6 +15,8 @@ class DeliveryGuy:
         currentOrder = 0
 
         for tickOfTime in range(0, deadline):
+            if len(orders) <= currentOrder:
+                return True
             if not drone.isBusy:
                 order = orders[currentOrder]
                 self.satisfyOrder(order, drone, warehouses)
@@ -34,11 +36,11 @@ class DeliveryGuy:
             choosedWarehouse.take(product[0].type, product[1])
             drone.loadItem(product)
             drone.busyTime += drone.position.distance(choosedWarehouse.position) + 1
-            self.commands += str(drone.id) + " L " + str(choosedWarehouse.id) + " " + str(product[0].type) + " " + str(product[1])
+            self.commands += str(drone.id) + " L " + str(choosedWarehouse.id) + " " + str(product[0].type) + " " + str(product[1]) + "\n"
             drone.position = choosedWarehouse.position
 
             drone.busyTime += drone.position.distance(order.deliverPosition) + 1
-            self.commands += str(drone.id) + " D " + str(order.id) + " " + str(product[0].type) + " " + str(product[1])
+            self.commands += str(drone.id) + " D " + str(order.id) + " " + str(product[0].type) + " " + str(product[1])+ "\n"
             drone.position = order.deliverPosition
 
             order.deliver([product])
