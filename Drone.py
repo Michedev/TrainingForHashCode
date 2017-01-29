@@ -4,12 +4,16 @@ from Point import Point
 
 
 class Drone:
+    id = 0
+
     def __init__(self, maxWeight : int, position : Point):
         self.maxWeight = maxWeight
         self.position = position
         self.currentWeight = 0
         self.loadedItems = []
         self.isBusy = False
+        self.id = Drone.id
+        Drone.id += 1
 
     def loadItem(self, productWithQty : Tuple[Product, int]):
         self.loadedItems.append(productWithQty)

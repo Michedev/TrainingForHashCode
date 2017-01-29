@@ -21,7 +21,7 @@ class Order:
         singleProduct = list(filter(lambda product : product[0].type == idProduct, self.products))
         assert(len(singleProduct) == 1)
         return singleProduct[0]
-    
+
     def isSatisfied(self)-> bool:
         for product in self.products:
             if product[1] != 0:

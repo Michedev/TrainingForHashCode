@@ -6,8 +6,11 @@ from Product import Product
 
 
 class Warehouse:
+    id = 0
     def __init__(self, position : Point, products : List[Tuple[Product, int]]):
         self.position, self.products = position, products
+        self.id = Warehouse.id
+        Warehouse.id += 1
         self.products.sort(key= lambda pair : pair[0].type)
     def quantityOf(self, productType : int) -> int:
         return reduce(lambda q1, q2 : q1 + q2, map(lambda pair: pair[1] ,filter(lambda pair : pair[0].type == productType, self.products)))
