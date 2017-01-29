@@ -83,6 +83,3 @@ class InputParser:
                 j += 1
             self.warehouses.append(Warehouse(position, warehouseProductList))
 
-parser = InputParser()
-
-parser.loadInput("busy_day.in")

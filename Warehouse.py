@@ -14,4 +14,5 @@ class Warehouse:
     def take(self, productType : int, quantityToTake : int):
         actualQuantity = self.quantityOf(productType)
         assert(actualQuantity >= quantityToTake)
+        self.products[productType] = (self.products[productType][0], actualQuantity - quantityToTake)
 
