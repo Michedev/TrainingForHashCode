@@ -5,8 +5,11 @@ from Product import Product
 
 
 class Order:
+    id = 0
     def __init__(self, deliverPosition: Point, products: List[Tuple[Product, int]]):
         self.deliverPosition,  self.products, self.satisfied = deliverPosition, products, False
+        self.id = Order.id
+        Order.id += 1
 
     def deliver(self, products : List[Tuple[Product, int]]):
         for product in products:
