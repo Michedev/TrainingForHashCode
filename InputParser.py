@@ -52,8 +52,7 @@ class InputParser:
             position = Point((int(line[0]), int(line[1])))
             numberOfProducts = int(file.readline())
 
-            countedProducts = Counter(
-                list(map(lambda el : int(el), file.readline().split(" "))))
+            countedProducts = Counter(list(map(lambda el : int(el), file.readline().split(" "))))
 
             j = 0
             products = []
