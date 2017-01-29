@@ -14,6 +14,7 @@ class Drone:
         self.isBusy = False
         self.id = Drone.id
         Drone.id += 1
+        self.busyTime = 0
 
     def loadItem(self, productWithQty : Tuple[Product, int]):
         self.loadedItems.append(productWithQty)

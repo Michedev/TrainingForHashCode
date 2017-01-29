@@ -17,9 +17,14 @@ class DeliveryGuy:
         for tickOfTime in range(0, deadline):
             if not drone.isBusy:
                 order = orders[currentOrder]
+                self.satisfyOrder(order, drone, warehouses)
+            else:
+                drone.busyTime -= 1
+                if drone.busyTime == 0:
+                    drone.isBusy = False
 
     def satisfyOrder(self, order: Order, drone: Drone, warehouses: List[Warehouse]):
-        choosedWarehouse = None
+        drone.isBusy = True
         for product in order.products:
             choosedWarehouse = self.searchWarehousesByProduct(warehouses, product)
             if choosedWarehouse is None:
@@ -27,7 +32,18 @@ class DeliveryGuy:
 
             choosedWarehouse.take(product[0].type, product[1])
             drone.loadItem(product)
+            drone.busyTime += drone.position.distance(choosedWarehouse.position) + 1
             self.commands += drone.id + " L " + choosedWarehouse.id + " " + product[0].type + " " + product[1]
+            drone.position = choosedWarehouse.position
+
+            drone.busyTime += drone.position.distance(order.deliverPosition) + 1
+            self.commands += drone.id + " D " + order.id + " " + product[0].type + " " + product[1]
+            drone.position = order.deliverPosition
+
+            order.deliver([product])
+            drone.unloadItem(product)
+
+        return order.satisfied
 
 
 
