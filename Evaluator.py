@@ -1,10 +1,10 @@
 import sys
 
-import InputParser
+from InputParser import *
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print 'ERROR in EXEC: python Evaluator.py <config> <submission>'
+        print('ERROR in EXEC: python Evaluator.py <config> <submission>')
         exit()
 
     fln_config = sys.argv[1]
